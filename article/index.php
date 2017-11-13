@@ -102,7 +102,7 @@ function echoContent($vId)
 			$content=str_replace("{news:pic}",'/'.$GLOBALS['cfg_cmspath'].ltrim($n_pic,'/'),$content);
 		}
 	}else{
-		$content=str_replace("{news:pic}",'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$content);
+		$content=str_replace("{news:pic}",'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$content);
 	}
 	$content=str_replace("{news:author}",$row['n_author'],$content);
 	$content=str_replace("{news:from}",$row['n_from'],$content);

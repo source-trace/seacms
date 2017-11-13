@@ -8,7 +8,7 @@ var skinColor='d3e3f3,999999|d1d3a2,3300FF|94d2e2,000000|000000,000000|c9abca,00
 var openMenu="2";//已无效参数
 var logoURL="logo.png";//已无效参数
 var adsPage="http://www.seacms.net/api/loading.html";//视频播放前广告页路径
-var adsTime=10;//视频播放前广告时间，单位秒
+var adsTime=3;//视频播放前广告时间，单位秒
 var showFullBtn="0"; //已无效参数
 var rehref="0";//已无效参数
 var alertwin='0';//已无效参数
@@ -47,7 +47,7 @@ if(flag==false)
 }
 
 
-__ = ['|', "innerWidth", "body", "clientWidth", "innerHeight", "clientHeight", "documentElement", "getElementById", "contentDocument", "frames", "document", "cciiframe", "style", "width", 'px', "height", "left", "0", "top", 'cciplay', "split", ",", "scroll", "px", "pisea_player", "piswf", "getASVars", "open", "close", "appName", "indexOf", "Microsoft", "userAgent", "toLowerCase", "match", "ie", "firefox", "chrome", "opera", "safari", "IE", "FIREFOX", "CHROME", "OPERA", "SAfARI", "-1", "src", "/", ".html", "write", '<div id="cc1play" style="height:0px; width:0px;display:none;wiidth:', 'px;heiight:', 'px;"></div>', "offsetLeft", "offsetTop", "currentStyle", "borderLeftWidth", "", "borderTopWidth", "offsetParent", "_lOlOl01l", "_lOlOl100", ',', 'cciiframe', "1", '0', "onresize", "<div id='cciiframe'style='height:0px; width:0px;display:none;wiidth: ", "px; heiight: ", "px;'></div>", "moveTo", "resizeTo", "availWidth", "availHeight", "onerror"];
+__ = ['|', "innerWidth", "body", "clientWidth", "innerHeight", "clientHeight", "documentElement", "getElementById", "contentDocument", "frames", "document", "cciiframe", "style", "width", 'px', "height", "left", "0", "top", 'cciplay', "split", ",", "scroll", "px", "pisea_player", "piswf", "getASVars", "open", "close", "appName", "indexOf", "Microsoft", "userAgent", "toLowerCase", "match", "ie", "firefox", "chrome", "opera", "safari", "IE", "FIREFOX", "CHROME", "OPERA", "SAfARI", "-1", "src", "/", ".html", "write", '<div id="cc1play" style="height:0px; width:0px;display:none;wiidth:', 'px;heiight:', 'px;"></div>', "offsetLeft", "offsetTop", "currentStyle", "borderLeftWidth", "", "borderTopWidth", "offsetParent", "_lOlOl01l", "_lOlOl100", ',', 'cciiframe', "1", '0', "onresize", "<div id='cci1frame'style='height:0px; width:0px;display:none;wiidth: ", "px; heiight: ", "px;'></div>", "moveTo", "resizeTo", "availWidth", "availHeight", "onerror"];
 var _lOlO1000 = 0;
 var _lOlO1001 = 0;
 function _lOlOl000() {

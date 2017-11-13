@@ -26,7 +26,7 @@ if($action=="add")
 		}
 	if (!is_numeric($sortrank)) $sortrank=1;
 	$dtime = time();
-	$query = "Insert Into `sea_flink`(sortrank,url,webname,logo,msg,email,dtime,ischeck) Values('$sortrank','$url','$webname','$logo','$msg','$email','$dtime','$ischeck'); ";
+	$query = "Insert Into `sea_flink`(sortrank,url,webname,logo,msg,dtime,ischeck) Values('$sortrank','$url','$webname','$logo','$email','$dtime','1'); ";
 	$rs = $dsql->ExecuteNoneQuery($query);
 	if($rs)
 	{
@@ -56,9 +56,8 @@ elseif($action=="save")
 		$trow = $dsql->GetOne("select max(sortrank)+1 as dd from sea_flink");
 		$sortrank = $trow['dd'];
 		}
-	if(!is_numeric($sortrank)) $sortrank=1;
-	if($v_type=="font") $logo="";
-	$query = "Update `sea_flink` set sortrank='$sortrank',url='$url',webname='$webname',logo='$logo',msg='$msg',ischeck='$ischeck',email='$email' where id='$id' ";
+	if (!is_numeric($sortrank)) $sortrank=1;
+	$query = "Update `sea_flink` set sortrank='$sortrank',url='$url',webname='$webname',logo='$logo',msg='$msg',ischeck='1' where id='$id' ";
 	$dsql->ExecuteNoneQuery($query);
 	ShowMsg("成功更改一个链接！","admin_link.php");
 	exit();

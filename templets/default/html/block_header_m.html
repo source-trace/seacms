@@ -14,3 +14,11 @@
     </ul>
   </div>
 </div>
+<switch name="list_id" >
+<case value="1"><script>seacms.cms.nav('dianying');</script></case>
+<case value="2"><script>seacms.cms.nav('tv');</script></case>
+<case value="3"><script>seacms.cms.nav('dongman');</script></case>
+<case value="4"><script>seacms.cms.nav('zongyi');</script></case>
+<case value="5"><script>seacms.cms.nav('gaoxiao');</script></case>
+<default /><script>seacms.cms.nav('{$model}');</script>
+</switch>

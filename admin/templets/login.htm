@@ -45,15 +45,7 @@ input {
        	<?php $v=file_get_contents("../data/admin/adminvcode.txt"); ?>
 		<div id="row" style="<?php if($v==0) echo 'display:none;' ?>"><input name="validate" type="text" id="vdcode" placeholder="输入右侧验证码" tabindex="3" style='width:230px;text-transform:uppercase;'/> <img id="vdimgck" src="../include/vdimgck.php" alt="看不清？点击更换" align="absmiddle" style="cursor:pointer; height:40px; width:95px; margin-left:-23px;" onClick="this.src=this.src+'?get=' + new Date()"/></div>  
 		
-		<div id="row" style=" height:48px;">
-		<div style="width:100px; float:left;">
-		<input name="input_sub" type="submit" id="input_sub" style='background-image:url(img/login_bt.jpg);width:84px;height:28px; border:none' value="" tabindex="4" />
-		</div>
-		<div style="font-size:12px; height:48px; line-height:48px; color:#999;float:left; margin-left:20px;">
-		当前IP：<?php echo $uip; ?>
-		</div>
-		
-		</div>
+		<div id="row" style="margin-top:10px;"><input name="input_sub" type="submit" id="input_sub" style='background-image:url(img/login_bt.jpg);width:84px;height:28px; border:none' value="" tabindex="4" /></div>
 		</fieldset>
 	  </form>
   </div>

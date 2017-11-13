@@ -135,10 +135,10 @@ var seacms = {
 			cache: true 
 		});
 		$.getScript("http://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js", function(response, status) {
-			$(".img.sea-img").lazyload({
-				placeholder:"http://www.seacms.net/api/nopic.gif",
+			$("img.sea-img").lazyload({
+				placeholder : cms.root+"Public/images/no.jpg",
 				effect : "fadeIn",
-				failurelimit: 3
+				failurelimit: 15
 				//threshold : 400
 				//skip_invisible : false
 				//container: $(".carousel-inner"),
@@ -150,8 +150,8 @@ var seacms = {
 			$.ajaxSetup({ 
 				cache: true 
 			});
-			$("<link>").attr({ rel: "stylesheet",type: "text/css",href: "https://cdn.bootcss.com/flickity/1.1.1/flickity.min.css"}).appendTo("head");
-			$.getScript("https://cdn.bootcss.com/flickity/1.1.1/flickity.pkgd.min.js", function(response, status) {
+			$("<link>").attr({ rel: "stylesheet",type: "text/css",href: "https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.1/flickity.min.css"}).appendTo("head");
+			$.getScript("https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.1/flickity.pkgd.min.js", function(response, status) {
 				$('.sea-gallery').flickity({
 					cellAlign: 'left',
 					freeScroll: true,
@@ -205,7 +205,7 @@ var seacms = {
 		});
 		$.getScript("http://cdn.bootcss.com/jquery.devbridge-autocomplete/1.2.26/jquery.autocomplete.min.js", function(response, status) {
 			$('#searchword').autocomplete({
-				serviceUrl : "",
+				serviceUrl : cms.root+'index.php?s=plus-search-vod',
 				params: {'limit': 10},
 				paramName: 'wd',
 				maxHeight: 400,
@@ -262,6 +262,7 @@ $(document).ready(function(){
 	seacms.click.updown();
 	seacms.cms.goback();
 	seacms.cms.share();
+	seacms.cms.qrcode();
 	seacms.cms.comment();
 	seacms.load.images();
 	seacms.load.raty();

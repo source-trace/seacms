@@ -375,14 +375,14 @@
           <input type="radio" name="edit___cfg_user" value="0" <?php if ($cfg_user=='0') echo "checked";?> class="radio" />&nbsp;&nbsp;如不需要会员功能请选择关闭，加快系统运行速度
       </tr>
       <tr>
-        <td>留言和报错开关：</td>
+        <td>留言开关：</td>
         <td>开启：
           <input type="radio" name="edit___cfg_feedbackstart" value="1" <?php if ($cfg_feedbackstart=='1') echo "checked";?> class="radio" onclick="getElementById('gbookfont').style.display=''"/>
           关闭：
           <input type="radio" name="edit___cfg_feedbackstart" value="0" <?php if ($cfg_feedbackstart=='0') echo "checked";?> class="radio" onclick="getElementById('gbookfont').style.display='none'"/>
-          <font  id="gbookfont"  <?php if ($cfg_feedbackstart=='0') echo "style='display:none'";?>> &nbsp;时间间隔
+          <font  id="gbookfont"  <?php if ($cfg_feedbackstart=='0') echo "style='display:none'";?>> &nbsp;留言时间间隔
           <input type="text" name="edit___cfg_feedback_times" size="4" value="<?php echo $cfg_feedback_times; ?>"/>
-          秒 </font>&nbsp;&nbsp;设置是否开启留言功能和视频报错功能
+          秒 </font>
       </tr>
       <tr>
         <td>评论开关：</td>
@@ -395,7 +395,7 @@
           秒&nbsp;&nbsp;在数据库负载过重情况下，可以关闭评论功能 </font></td>
       </tr>
       <tr>
-        <td width="103" align="left" class="td_border">留言审核：</td>
+        <td width="103" height="30" align="left" class="td_border">留言审核：</td>
         <td class="td_border">开启：
           <input type="radio" name="edit___cfg_feedbackcheck"  value="1" <?php if ($cfg_feedbackcheck=='1') echo "checked";?> class="radio"/>
           关闭：
@@ -403,11 +403,11 @@
       </tr>
       <tr>
       <tr>
-        <td width="103" height="30" align="left" class="td_border">前台提交验证码：</td>
+        <td width="103" height="30" align="left" class="td_border">加验证码：</td>
         <td class="td_border">开启：
           <input type="radio" name="edit___cfg_feedback_ck"  value="1" <?php if ($cfg_feedback_ck=='1') echo "checked";?> class="radio"/>
           关闭：
-          <input type="radio" name="edit___cfg_feedback_ck"  value="0" <?php if ($cfg_feedback_ck=='0') echo "checked";?> class="radio"/>&nbsp;&nbsp;设置访客使用留言/报错/评论功能时是否需要验证码</td>
+          <input type="radio" name="edit___cfg_feedback_ck"  value="0" <?php if ($cfg_feedback_ck=='0') echo "checked";?> class="radio"/></td>
       </tr>
       <tr>
         <td >来源排序：</td>

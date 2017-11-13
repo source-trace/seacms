@@ -52,7 +52,6 @@ function cj()
 	$sql1 = "select count(*) as dd from sea_data where v_recycled=0 ";
 	
 	if($ids!=""){
-		$ids = addslashes($ids);
 		$sql .= " AND d.v_id in (". $ids .")";
 		$sql1 .= " AND v_id in (". $ids .")";
 	}
@@ -85,7 +84,7 @@ function cj()
 			if($row->v_playdata1 !=""){$allplayurl=$row->v_playdata."$$$".$row->v_playdata1;}else{$allplayurl=$row->v_playdata;}
 			$tempurl = getplayurl($allplayurl);
 			
-		    if (strpos(",".$row->v_pic,"http://")>0||strpos(",".$row->v_pic,"https://")>0) { $temppic = $row->v_pic; }  elseif(strpos(",".$row->v_pic,"//")>0){ $temppic = "http:".$row->v_pic; }else { $temppic = $cfg_basehost."/".$row->v_pic; } //图片
+		    if (strpos(",".$row->v_pic,"http://")>0) { $temppic = $row->v_pic; } else { $temppic = $cfg_basehost."/".$row->v_pic; } //图片
 			
 			$query = "select body  from sea_content  where v_id='$row->v_id' ";
 			$rowccc = $dsql->GetOne($query);

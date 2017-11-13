@@ -606,6 +606,7 @@ elseif($action=="delByFrom")
         '/',
         '/data',
         '/data/admin',
+        '/data/backupdata',
         '/data/cache',
         '/data/mark',
 		'/install',

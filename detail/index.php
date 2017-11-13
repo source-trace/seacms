@@ -106,7 +106,7 @@ function echoContent($vId)
 		$content=str_replace("{playpage:pic}",'/'.$GLOBALS['cfg_cmspath'].ltrim($v_pic,'/'),$content);
 		}
 	}else{
-	$content=str_replace("{playpage:pic}",'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$content);
+	$content=str_replace("{playpage:pic}",'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$content);
 	}
 	
 	$v_spic=$row['v_spic'];
@@ -117,7 +117,7 @@ function echoContent($vId)
 		$content=str_replace("{playpage:spic}",'/'.$GLOBALS['cfg_cmspath'].ltrim($v_spic,'/'),$content);
 		}
 	}else{
-	$content=str_replace("{playpage:spic}",'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$content);
+	$content=str_replace("{playpage:spic}",'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$content);
 	}
 	
 	$v_gpic=$row['v_gpic'];
@@ -128,7 +128,7 @@ function echoContent($vId)
 		$content=str_replace("{playpage:gpic}",'/'.$GLOBALS['cfg_cmspath'].ltrim($v_gpic,'/'),$content);
 		}
 	}else{
-	$content=str_replace("{playpage:gpic}",'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$content);
+	$content=str_replace("{playpage:gpic}",'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$content);
 	}
 	
 	$v_actor=$row['v_actor'];

@@ -453,7 +453,6 @@ CREATE TABLE `sea_type` (
   `torder` int(11) NOT NULL default '0',
   `templist` char(50) NOT NULL default '',
   `templist_1` char(50) NOT NULL default '',
-  `templist_2` char(50) NOT NULL default '',
   `title` char(50) NOT NULL default '',
   `keyword` char(50) NOT NULL default '',
   `description` char(50) NOT NULL default '',
@@ -529,12 +528,3 @@ CREATE TABLE IF NOT EXISTS `sea_ie` (
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-DROP TABLE IF EXISTS `sea_zyk`;
-CREATE TABLE IF NOT EXISTS `sea_zyk` (
-  `zid` int(6) NOT NULL AUTO_INCREMENT,
-  `zname` varchar(60) NOT NULL,
-  `zapi` varchar(255) NOT NULL,
-  `zinfo` varchar(255) NOT NULL default '暂无',
-  PRIMARY KEY (`zid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-

@@ -64,18 +64,14 @@ echoPlay($vid);
 function echoPlay($vId)
 {
 	global $dsql,$cfg_isalertwin,$cfg_ismakeplay,$cfg_iscache,$mainClassObj,$cfg_playaddr_enc,$id,$from,$t1,$cfg_runmode,$cfg_user;
+	$playTemFileName=($cfg_isalertwin==1) ? "openplay.html" : "play.html";
+	$playTemplatePath = "/templets/".$GLOBALS['cfg_df_style']."/".$GLOBALS['cfg_df_html']."/".$playTemFileName;
 	
 	$row=$dsql->GetOne("Select d.*,p.body as v_playdata,p.body1 as v_downdata,c.body as v_content From `sea_data` d left join `sea_playdata` p on p.v_id=d.v_id left join `sea_content` c on c.v_id=d.v_id where d.v_id='$vId'");
 	if(!is_array($row)){
 		exit("<font color='red'>影片ID:".$vId." 该影片不存在!</font>");
 	}
 	$vType=$row['tid'];
-	
-	$playTemFileName=getPlayTemplateOnCache($vType);
-	$playTemFileName=empty($playTemFileName) ? "play.html" : $playTemFileName;
-	$playTemplatePath = "/templets/".$GLOBALS['cfg_df_style']."/".$GLOBALS['cfg_df_html']."/".$playTemFileName;
-	
-	
 	$vtag=$row['v_name'];
 	$vmoney=$row['v_money'];
 	$vExtraType = $row['v_extratype'];
@@ -179,7 +175,7 @@ function echoPlay($vId)
 		$content=str_replace("{playpage:pic}",'/'.$GLOBALS['cfg_cmspath'].ltrim($v_pic,'/'),$content);
 		}
 	}else{
-	$content=str_replace("{playpage:pic}",'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$content);
+	$content=str_replace("{playpage:pic}",'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$content);
 	}
 	$v_spic=$row['v_spic'];
 	if(!empty($v_spic)){
@@ -189,7 +185,7 @@ function echoPlay($vId)
 		$content=str_replace("{playpage:spic}",'/'.$GLOBALS['cfg_cmspath'].ltrim($v_spic,'/'),$content);
 		}
 	}else{
-	$content=str_replace("{playpage:spic}",'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$content);
+	$content=str_replace("{playpage:spic}",'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$content);
 	}
 	
 	$v_gpic=$row['v_gpic'];
@@ -200,7 +196,7 @@ function echoPlay($vId)
 		$content=str_replace("{playpage:gpic}",'/'.$GLOBALS['cfg_cmspath'].ltrim($v_gpic,'/'),$content);
 		}
 	}else{
-	$content=str_replace("{playpage:gpic}",'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$content);
+	$content=str_replace("{playpage:gpic}",'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$content);
 	}
 	
 	$v_actor=$row['v_actor'];
@@ -273,7 +269,7 @@ $str=implode('$$$',$arr1); //最终地址
 $password=$row['v_psd'];
 if(!empty($password)){
 		if($_POST['password'] !== $password)  {
-		$content = str_replace("{playpage:player}","<!DOCTYPE html><html><head><title>请输入视频播放口令后继续</title></head><body leftmargin='0' topmargin='0'><center><div style='font-size:12px; width:100%;height:100%;'><div style='width:200px; height:50px;text-align:left; margin-top:30px;'>请输入密码后继续：<br /><form action='' method='post'><input style='border:1px solid #3374b4;height:33px;line-height:33px;padding-left:5px' type='password' name='password' /><input style='border:1px solid #3374b4;background:#3374b4;padding:7px 10px;color:#fff;text-decoration:none;vertical-align:top' type='submit' value='播 放' /></form></div></div><br><img style='margin:15px 0 5px 0' src='/pic/ewm.png' height='100' width='100'><br/>扫描二维码关注微信<br />回复<font color='red'>".$vId."</font>获取播放口令</center></body></html>",$content);
+		$content = str_replace("{playpage:player}","<!DOCTYPE html><html><head><title>请输入视频播放口令后继续</title></head><body leftmargin='0' topmargin='0'><center><div style='font-size:12px; width:100%;height:100%;'><div style='width:200px; height:50px;text-align:left; margin-top:30px;'>请输入密码后继续：<br /><form action='' method='post'><input style='border:1px solid #3374b4;height:33px;line-height:33px;padding-left:5px' type='password' name='password' /><input style='border:1px solid #3374b4;background:#3374b4;padding:7px 10px;color:#fff;text-decoration:none;vertical-align:top' type='submit' value='播 放' /></form></div></div><br><img style='margin:15px 0 5px 0' src='/pic/ewm.png' height='100' width='100'><br/>扫描二维码关注微信<br />回复<font color='red'>".$vtag."</font>获取播放口令</center></body></html>",$content);
 		}
 	else{
 		if($cfg_runmode==2) $content = str_replace("{playpage:player}","<script>var paras=getHtmlParas('".getfileSuffix()."');_lOlOl10l(paras[2],paras[1])</script><iframe id='cciframe' scrolling='no' frameborder='0' allowfullscreen></iframe>",$content);
@@ -298,10 +294,10 @@ function parsePlayPart($templatePath,$currentTypeId,$vtag)
 	$content=loadFile(sea_ROOT.$templatePath);
 	$content=$mainClassObj->parsePlayPageSpecial($content);
 	$content=$mainClassObj->parseTopAndFoot($content);
-	$content=$mainClassObj->parseMenuList($content,"",$currentTypeId);
 	$content=$mainClassObj->parseHistory($content);
 	$content=$mainClassObj->parseSelf($content);
-	$content=$mainClassObj->parseGlobal($content);	
+	$content=$mainClassObj->parseGlobal($content);
+	$content=$mainClassObj->parseMenuList($content,"",$currentTypeId);
 	$content=$mainClassObj->parseAreaList($content);
 	$content=$mainClassObj->parseVideoList($content,$currentTypeId);
 	$content=$mainClassObj->parseNewsList($content,$currentTypeId,$vtag);

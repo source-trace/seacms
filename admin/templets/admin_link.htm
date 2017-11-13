@@ -29,7 +29,7 @@ $TotalPage = ceil($TotalResult/$numPerPage);
 if ($page>$TotalPage) $page=$TotalPage;
 $limitstart = ($page-1) * $numPerPage;
 if($limitstart<0) $limitstart=0;
-$sqlStr="select * from `sea_flink`$whereStr order by sortrank asc limit $limitstart,$numPerPage";
+$sqlStr="select id,sortrank,url,webname,logo from `sea_flink`$whereStr order by sortrank asc limit $limitstart,$numPerPage";
 ?>
 <form action="" method="post" name="linkform">
 <table border="0" cellpadding="0" cellspacing="0" align="center" class="tb">
@@ -40,8 +40,7 @@ $sqlStr="select * from `sea_flink`$whereStr order by sortrank asc limit $limitst
       <TD>名称</TD>
       <TD>网址</TD>
       <TD>类型</TD>
-	  <TD>显示</TD>
-      <TD>排序</TD>	  
+      <TD>排序</TD>
       <TD>操作</TD>
     </TR>
 <?php
@@ -57,9 +56,8 @@ $aid=$row->id;
       <TD style="background:transparent"><input type="text" name="webname<?php echo $aid;?>" value="<?php echo $row->webname;?>" size="20"/></TD>
       <TD style="background:transparent"><input name="url<?php echo $aid;?>" type="text" value="<?php echo $row->url;?>"  size="30"/></TD>
       <td style="background:transparent"><?php if(empty($row->logo)) echo "文字链接"; else echo "图片链接";?></td>
-	  <td style="background:transparent"><?php if($row->ischeck==1) echo "显示"; else echo "隐藏";?></td>
       <TD style="background:transparent"><input name="sortrank<?php echo $aid;?>" type="text" value="<?php echo $row->sortrank;?>"  size="10"/></TD>
-      <TD style="background:transparent"><a  href="?action=last&id=<?php echo $aid;?>">上移</a> <a href="?action=next&id=<?php echo $aid;?>">下移</a> <a href="?action=edit&id=<?php echo $aid;?>">查看/编辑</a> <a  onclick="if(confirm('确定要删除吗')){return true;}else{return false;}" href="?action=del&id=<?php echo $aid;?>">删除</a></TD>
+      <TD style="background:transparent"><a  href="?action=last&id=<?php echo $aid;?>">上移</a> <a href="?action=next&id=<?php echo $aid;?>">下移</a> <a href="?action=edit&id=<?php echo $aid;?>">编辑</a> <a  onclick="if(confirm('确定要删除吗')){return true;}else{return false;}" href="?action=del&id=<?php echo $aid;?>">删除</a></TD>
     </TR>
 <?php
 }
@@ -69,7 +67,7 @@ $aid=$row->id;
 </form> 
 <?php
 if($action=="edit"){
-$row = $dsql->GetOne("Select * From `sea_flink` where id='$id'");
+$row = $dsql->GetOne("Select webname,url,sortrank,msg,logo From `sea_flink` where id='$id'");
 ?>
 <form action="?action=save&id=<?php echo $id;?>" method="post" name="editlink" >
 <table border="0" cellpadding="0" cellspacing="0" align="center" class="tb mt20">
@@ -82,13 +80,6 @@ $row = $dsql->GetOne("Select * From `sea_flink` where id='$id'");
       <TD >网站地址：</TD>
       <TD ><input type="text" size="50" name="url" value="<?php echo $row['url'];?>"/><font color="red">＊</font></TD>
     </TR>
-	<TR>
-      <TD >是否显示：</TD>
-      <TD ><select name="ischeck"  style=" width:60px">
-        <option value="1"<?php if($row['ischeck']==1) echo " selected";?>>显示</option>
-        <option value="0"<?php if($row['ischeck']==0) echo " selected";?>>隐藏</option>
-      </select><font color="red">＊</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;添加时间：<?php echo date("Y-m-d h:m:s",$row["dtime"]);?></TD>
-    </TR>
     <TR>
       <TD >链接类型：</TD>
       <TD ><select name="v_type"  style=" width:100px"  onChange="selectPicLink(this,'pic');">
@@ -96,14 +87,9 @@ $row = $dsql->GetOne("Select * From `sea_flink` where id='$id'");
         <option value="pic"<?php if(!empty($row['logo'])) echo " selected";?>>图片链接</option>
       </select><font color="red">＊</font></TD>
     </TR>
-	
     <TR id="tr_v_pic"<?php if(empty($row['logo'])) echo " style=\"display:none\"";?>>
       <TD >LOGO地址：</TD>
       <TD ><input type="text" size="50" name="logo" value="<?php echo $row['logo'];?>"/></TD>
-    </TR>
-	<TR>
-      <TD >联系方式：</TD>
-      <TD ><input type="text" size="50" name="email" value="<?php echo $row['email'];?>"/></TD>
     </TR>
     <TR>
       <TD >排序：</TD>
@@ -134,13 +120,6 @@ $row = $dsql->GetOne("Select * From `sea_flink` where id='$id'");
       <TD >网站地址：</TD>
       <TD ><input type="text" size="50" name="url" /><font color="red">＊</font></TD>
     </TR>
-	<TR>
-      <TD >是否显示：</TD>
-      <TD ><select name="ischeck"  style=" width:60px">
-        <option value="1" selected>显示</option>
-        <option value="0" >隐藏</option>
-      </select><font color="red">＊</font></TD>
-    </TR>
     <TR>
       <TD >链接类型：</TD>
       <TD ><select name="v_type"  style=" width:100px"  onChange="selectPicLink(this,'pic');">
@@ -151,10 +130,6 @@ $row = $dsql->GetOne("Select * From `sea_flink` where id='$id'");
     <TR id="tr_v_pic" style="display:none">
       <TD >LOGO地址：</TD>
       <TD ><input type="text" size="50" name="logo" /></TD>
-    </TR>
-	<TR>
-      <TD >联系方式：</TD>
-      <TD ><input type="text" size="50" name="email" /></TD>
     </TR>
     <TR>
       <TD >排序：</TD>

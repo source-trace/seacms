@@ -254,17 +254,13 @@ function leaveWordList($currentPage){
 	$TotalPage = ceil($TotalResult/$vsize);
 	$dsql->SetQuery($sql);
 	$dsql->Execute('leaveWordList');
-	$ii=$limitstart+1;
+	$i=$TotalResult;
 	while($row=$dsql->GetObject('leaveWordList')){
-	
-	$i=$ii++;
-	$iii=$TotalResult-$i;
-	$iiii=$iii+1;
 	$txt.="<ul><li class=\"topwords\"><span><strong>".$row->uname."</strong> 发表于 ".MyDate('',$row->dtime)."</span>";
-	$txt.="第".$iiii."楼</li>";
+	$txt.="第".$i."楼</li>";
 	$txt.="<li class=\"words\">".showFace($row->msg)."</li>";
 	$txt.="</ul>";
-	//$i--;
+	$i--;
 	}
 	unset($i);
 	$txt.="<div class=\"page\"><span>共".$TotalPage."页</span>";
