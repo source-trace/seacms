@@ -73,6 +73,7 @@ elseif($action=='cancelfav')
 	}
 	foreach($fid as $id)
 	{
+		$id=intval($id);
 		$dsql->executeNoneQuery("delete from sea_favorite where id=".$id);
 	}
 	echo "<script>location.href='?action=favorite'</script>";

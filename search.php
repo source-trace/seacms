@@ -43,7 +43,8 @@ $ver = addslashes(cn_substr($ver,20));
 $money = RemoveXSS(stripslashes($money));
 $money = addslashes(cn_substr($money,20));
 
-
+$order = RemoveXSS(stripslashes($order));
+$order = addslashes(cn_substr($order,20));
 
 if($cfg_notallowstr !='' && m_eregi($cfg_notallowstr,$searchword))
 {
@@ -61,7 +62,12 @@ echoSearchPage();
 function echoSearchPage()
 {
 	global $dsql,$cfg_iscache,$mainClassObj,$page,$t1,$cfg_search_time,$searchtype,$searchword,$tid,$year,$letter,$area,$yuyan,$state,$ver,$order,$jq,$money,$cfg_basehost;
-	$order = !empty($order)?$order:time;
+	
+	$orderarr=array('id','idasc','time','timeasc','hit','hitasc','commend','commendasc','score','scoreasc');
+    if(!(in_array($order,$orderarr))){$order='time';}
+	
+	if(strpos($searchword,'{searchpage:')) exit; 
+	
 	if(intval($searchtype)==5)
 	{
 		$searchTemplatePath = "/templets/".$GLOBALS['cfg_df_style']."/".$GLOBALS['cfg_df_html']."/cascade.html";

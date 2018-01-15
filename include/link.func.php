@@ -564,11 +564,11 @@ function getItemLink($str,$value,$schwhere)
 			$Link="/".$GLOBALS['cfg_cmspath']."search.php?".preg_replace("/\&?ver\=[^\&]*/i","",$schwhere)."&ver=".urlencode($value);
 		break;
 		case "state":	
-			if($value=="全部")
+			if($value=='全部')
 			{
 				$Link="/".$GLOBALS['cfg_cmspath']."search.php?".preg_replace("/\&?state\=[^\&]*/i","",$schwhere);
 			}
-			elseif($value=="完结")
+			elseif($value=='w')
 			{
 			$Link="/".$GLOBALS['cfg_cmspath']."search.php?".preg_replace("/\&?state\=[^\&]*/i","",$schwhere)."&state=w";
 			}

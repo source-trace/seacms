@@ -317,7 +317,7 @@ function makeArticleById($vId)
 	$content=str_replace("{news:pic}",'/'.$GLOBALS['cfg_cmspath'].ltrim($n_pic,'/'),$content);
 	}
 	}else{
-	$content=str_replace("{news:pic}",'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$content);
+	$content=str_replace("{news:pic}",'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$content);
 	}
 	$content=str_replace("{news:author}",$row['n_author'],$content);
 	$content=str_replace("{news:from}",$row['n_from'],$content);
@@ -374,8 +374,7 @@ function makeContentById($vId)
 {
 	global $dsql,$cfg_isalertwin,$cfg_ismakeplay,$cfg_iscache,$mainClassObj;
 	$playn = 0;
-	$playTemFileName=($cfg_isalertwin==1) ? "openplay.html" : "play.html";
-	$playTemplatePath = "/templets/".$GLOBALS['cfg_df_style']."/".$GLOBALS['cfg_df_html']."/".$playTemFileName;
+	
 	$row=$dsql->GetOne("Select d.*,p.body as v_playdata,p.body1 as v_downdata,c.body as v_content From `sea_data` d left join `sea_playdata` p on p.v_id=d.v_id left join `sea_content` c on c.v_id=d.v_id where d.v_id='$vId'");
 	if(!is_array($row)){
 		return "<font color='red'>影片ID:".$vId." 该影片所属分类被隐藏，跳过生成</font><br>";
@@ -384,6 +383,11 @@ function makeContentById($vId)
 	$GLOBALS['zid']=$vId;
 	
 	$vType=$row['tid'];
+	
+	$playTemFileName=getPlayTemplateOnCache($vType);
+	$playTemFileName=empty($playTemFileName) ? "play.html" : $playTemFileName;
+	$playTemplatePath = "/templets/".$GLOBALS['cfg_df_style']."/".$GLOBALS['cfg_df_html']."/".$playTemFileName;
+	
 	$vExtraType = $row['v_extratype'];
 	$contentTmpName=getContentTemplateOnCache($vType);
 	$contentTmpName=empty($contentTmpName) ? "content.html" : $contentTmpName;
@@ -474,7 +478,7 @@ function makeContentById($vId)
 		$content=str_replace("{playpage:pic}",'/'.$GLOBALS['cfg_cmspath'].ltrim($v_pic,'/'),$content);
 		}
 		}else{
-		$content=str_replace("{playpage:pic}",'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$content);
+		$content=str_replace("{playpage:pic}",'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$content);
 		}
 		
 		$v_spic=$row['v_spic'];
@@ -485,7 +489,7 @@ function makeContentById($vId)
 		$content=str_replace("{playpage:spic}",'/'.$GLOBALS['cfg_cmspath'].ltrim($v_spic,'/'),$content);
 		}
 		}else{
-		$content=str_replace("{playpage:spic}",'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$content);
+		$content=str_replace("{playpage:spic}",'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$content);
 		}
 		
 		$v_gpic=$row['v_gpic'];
@@ -496,7 +500,7 @@ function makeContentById($vId)
 		$content=str_replace("{playpage:gpic}",'/'.$GLOBALS['cfg_cmspath'].ltrim($v_gpic,'/'),$content);
 		}
 		}else{
-		$content=str_replace("{playpage:gpic}",'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$content);
+		$content=str_replace("{playpage:gpic}",'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$content);
 		}
 		
 		$v_actor=$row['v_actor'];

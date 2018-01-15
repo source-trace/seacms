@@ -8,7 +8,7 @@ if(!isset($tag)) $tag = '';
 
 $tag = FilterSearch(stripslashes($tag));
 $tag = addslashes(cn_substr($tag,20));
-$tag = RemoveXSS(stripslashes($tag));
+$tag = RemoveXSS($tag);
 if($tag=='')
 {
 	ShowMsg('标签不能为空！','-1','0',$cfg_search_time);

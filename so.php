@@ -7,7 +7,7 @@ $searchtype = (isset($searchtype) && is_numeric($searchtype)) ? $searchtype : -1
 $searchword = isset($searchword) && $searchword ? $searchword:'';
 $searchword = FilterSearch(stripslashes($searchword));
 $searchword = addslashes(cn_substr($searchword,20));
-$searchword = RemoveXSS(stripslashes($searchword));
+$searchword = RemoveXSS($searchword);
 $searchword = trim($searchword);
 if($cfg_notallowstr !='' && m_eregi($cfg_notallowstr,$searchword))
 {

@@ -1,8 +1,7 @@
 <?php
 error_reporting(0);
-if(is_file($_SERVER['DOCUMENT_ROOT'].'/360safe/360webscan.php')){
-    require_once($_SERVER['DOCUMENT_ROOT'].'/360safe/360webscan.php');
-}
+require_once('webscan/360webscan.php');
+
 define('sea_INC', preg_replace("|[/\\\]{1,}|",'/',dirname(__FILE__) ) );
 define('sea_ROOT', preg_replace("|[/\\\]{1,}|",'/',substr(sea_INC,0,-8) ) );
 define('sea_DATA', sea_ROOT.'/data');

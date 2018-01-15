@@ -10,7 +10,8 @@ if($ac=='search')
 {
 	if(empty($uid)&&empty($uname))
 	{
-		$wheresql = "";
+		ShowMsg("错误，您必须输入一个搜索条件！",'-1');
+		exit();
 	}else
 	{
 		$wheresql = "where";
@@ -80,7 +81,7 @@ elseif($ac=='editsave')
 				$sql="update sea_member set gid=$gid,points=$upoints,state=$ustate,password='$psd' where id=$id";}
 	if($dsql->ExecuteNoneQuery($sql))
 	{
-		ShowMsg("更新成功",'admin_members.php');
+		ShowMsg("更新成功",'-1');
 	}
 	else
 	{
@@ -99,6 +100,18 @@ elseif($ac=='editsave')
 	}
 	exit();
 }
+elseif($ac=='del2')
+{	
+	$sql = "delete from sea_member where id='$id'";
+	if($dsql->ExecuteNoneQuery($sql))
+	{
+		ShowMsg("删除成功",'admin_memberslist.php');
+	}else
+	{
+		ShowMsg("删除失败",'admin_memberslist.php');
+	}
+	exit();
+}
 elseif($ac=='delall')
 {	
 	if(empty($uidarray))
@@ -112,6 +125,21 @@ elseif($ac=='delall')
 		$dsql->ExecuteNoneQuery($sql);
 	}
 	ShowMsg("删除成功",'admin_members.php');
+	exit();
+}
+elseif($ac=='delall2')
+{	
+	if(empty($uidarray))
+	{
+		ShowMsg("请选择要删除的用户",'-1');
+		exit();
+	}
+	foreach($uidarray as $id)
+	{
+		$sql = "delete from sea_member where id='$id'";
+		$dsql->ExecuteNoneQuery($sql);
+	}
+	ShowMsg("删除成功",'admin_memberslist.php');
 	exit();
 }
 include(sea_ADMIN.'/templets/admin_members.htm');

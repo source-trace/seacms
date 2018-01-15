@@ -1678,7 +1678,7 @@ function RemoveXSS($val) {
     
    // now the only remaining whitespace attacks are \t, \n, and \r 
 
-   $ra1 = Array('_GET','_POST','_COOKIE','_REQUEST','if:','javascript', 'vbscript', 'expression', 'applet', 'meta', 'xml', 'blink', 'link', 'style', 'script', 'embed', 'object', 'iframe', 'frame', 'frameset', 'ilayer', 'layer', 'bgsound', 'title', 'base', 'eval', 'passthru', 'exec', 'assert', 'system', 'chroot', 'chgrp', 'chown', 'shell_exec', 'proc_open', 'ini_restore', 'dl', 'readlink', 'symlink', 'popen', 'stream_socket_server', 'pfsockopen', 'putenv', 'cmd'); 
+   $ra1 = Array('_GET','_POST','_COOKIE','_REQUEST','if:','javascript', 'vbscript', 'expression', 'applet', 'meta', 'xml', 'blink', 'link', 'style', 'script', 'embed', 'object', 'iframe', 'frame', 'frameset', 'ilayer', 'layer', 'bgsound', 'title', 'base', 'eval', 'passthru', 'exec', 'assert', 'system', 'chroot', 'chgrp', 'chown', 'shell_exec', 'proc_open', 'ini_restore', 'dl', 'readlink', 'symlink', 'popen', 'stream_socket_server', 'pfsockopen', 'putenv', 'cmd','base64_decode','fopen','fputs','replace','input','contents'); 
    $ra2 = Array('onabort', 'onactivate', 'onafterprint', 'onafterupdate', 'onbeforeactivate', 'onbeforecopy', 'onbeforecut', 'onbeforedeactivate', 'onbeforeeditfocus', 'onbeforepaste', 'onbeforeprint', 'onbeforeunload', 'onbeforeupdate', 'onblur', 'onbounce', 'oncellchange', 'onchange', 'onclick', 'oncontextmenu', 'oncontrolselect', 'oncopy', 'oncut', 'ondataavailable', 'ondatasetchanged', 'ondatasetcomplete', 'ondblclick', 'ondeactivate', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'onerror', 'onerrorupdate', 'onfilterchange', 'onfinish', 'onfocus', 'onfocusin', 'onfocusout', 'onhelp', 'onkeydown', 'onkeypress', 'onkeyup', 'onlayoutcomplete', 'onload', 'onlosecapture', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmousewheel', 'onmove', 'onmoveend', 'onmovestart', 'onpaste', 'onpropertychange', 'onreadystatechange', 'onreset', 'onresize', 'onresizeend', 'onresizestart', 'onrowenter', 'onrowexit', 'onrowsdelete', 'onrowsinserted', 'onscroll', 'onselect', 'onselectionchange', 'onselectstart', 'onstart', 'onstop', 'onsubmit', 'onunload'); 
    $ra = array_merge($ra1, $ra2); 
     
@@ -1816,7 +1816,7 @@ function getjqTypeListsOnCache($type=0)
 function getTypeLists($type=0)
 {
 	global $dsql,$cfg_iscache;
-	$sql="select tid,upid,tname,tenname,torder,templist,templist_1,keyword,description,ishidden,unionid,tptype,title,-1 as tcount from sea_type where tptype = '$type' order by torder asc";
+	$sql="select tid,upid,tname,tenname,torder,templist,templist_1,templist_2,keyword,description,ishidden,unionid,tptype,title,-1 as tcount from sea_type where tptype = '$type' order by torder asc";
 	$rows=array();
 	$dsql->SetQuery($sql);
 	$dsql->Execute('al');
@@ -2542,6 +2542,18 @@ function getContentTemplate($tid,$tytype=0)
 	return $templist;
 }
 
+function getPlayTemplate($tid,$tytype=0)
+{
+	$tlist=getTypeListsOnCache($tytype);
+	foreach($tlist as $row)
+	{
+		if($row->tid==$tid){
+			$templist=$row->templist_2;
+		}
+	}
+	return $templist;
+}
+
 function getContentTemplateOnCache($id){
         global $cfg_iscache;
 	    $cacheName="str_get_content_templist".$id;
@@ -2549,6 +2561,17 @@ function getContentTemplateOnCache($id){
 			if (chkFileCache($cacheName)){$templist=getFileCache($cacheName);}else{$templist=getContentTemplate($id);setFileCache($cacheName,$templist);}
 		}else{
 			$templist=getContentTemplate($id);
+		}
+	   return $templist;
+}
+
+function getPlayTemplateOnCache($id){
+        global $cfg_iscache;
+	    $cacheName="str_get_play_templist".$id;
+		if($cfg_iscache){
+			if (chkFileCache($cacheName)){$templist=getFileCache($cacheName);}else{$templist=getPlayTemplate($id);setFileCache($cacheName,$templist);}
+		}else{
+			$templist=getPlayTemplate($id);
 		}
 	   return $templist;
 }

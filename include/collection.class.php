@@ -367,7 +367,7 @@ class Collect
 					{
 						return $autocol_str."数据<font color=red>".$v_data['v_name']."</font>处于锁定状态,不更新数据<br>";
 					}
-					if($v_data['v_downdata']==$rs1['v_downdata']&&$v_data['v_playdata']==$rs1['v_playdata'])
+					if($v_data['v_downdata']==$rs1['v_downdata']&&$v_data['v_playdata']==$rs1['v_playdata'] && (strpos($cfg_gatherset,'3')!==false))
 					{
 						return $autocol_str.'数据<font color=red>'.$v_data['v_name'].'</font>地址无变化,无需更新<br>';
 					}
@@ -376,6 +376,10 @@ class Collect
 				   {
 				       return $autocol_str.$this->update_playdata_only($rs1,$v_data);
 				   }
+				   elseif(strpos($cfg_gatherset,'4')!==false)
+					 {
+						return $autocol_str.$this->update_movie_info_pic($rs1,$v_data);
+					 }
 				   //else 不勾选[只更新影片地址]
 				   else
 				   {

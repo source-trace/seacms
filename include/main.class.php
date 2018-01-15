@@ -998,7 +998,7 @@ class MainClass_Template
 									$loopstrVlistNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].ltrim($v_pic,'/'),$loopstrVlistNew);
 								}
 							}else{
-								$loopstrVlistNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$loopstrVlistNew);
+								$loopstrVlistNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$loopstrVlistNew);
 							}
 						break;
 						case "author":
@@ -1291,7 +1291,7 @@ class MainClass_Template
 					$whereNtag="";
 				}
 				
-				if(!empty($vletter)) $whereLetter=" and m.v_letter ='".strtoupper($vletter)."' "; else $whereLetter="";
+				if(!empty($vletter))if(strlen($vletter)>1){$whereLetter=" and m.v_letter  between '0' and '9'";}else{$whereLetter=" and m.v_letter ='".strtoupper($vletter)."' ";} else $whereLetter="";
 				if(!empty($vlang)) $whereLang=" and m.v_lang ='".strtoupper($vlang)."' "; else $whereLang="";
 				if(!empty($varea)) $whereArea=" and m.v_publisharea ='".strtoupper($varea)."' "; else $whereArea="";
 				if(!empty($vyear)) $whereYear=" and m.v_publishyear ='".strtoupper($vyear)."' "; else $whereYear="";
@@ -1545,7 +1545,7 @@ class MainClass_Template
 									$loopstrVlistNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].ltrim($v_pic,'/'),$loopstrVlistNew);
 								}
 								}else{
-									$loopstrVlistNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$loopstrVlistNew);
+									$loopstrVlistNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$loopstrVlistNew);
 								}
 							break;
 							case "spic":
@@ -1557,7 +1557,7 @@ class MainClass_Template
 									$loopstrVlistNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].ltrim($v_spic,'/'),$loopstrVlistNew);
 								}
 								}else{
-									$loopstrVlistNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$loopstrVlistNew);
+									$loopstrVlistNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$loopstrVlistNew);
 								}
 							break;
 							case "gpic":
@@ -1569,7 +1569,7 @@ class MainClass_Template
 									$loopstrVlistNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].ltrim($v_gpic,'/'),$loopstrVlistNew);
 								}
 								}else{
-									$loopstrVlistNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$loopstrVlistNew);
+									$loopstrVlistNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$loopstrVlistNew);
 								}
 							break;
 							case "hit":
@@ -1984,7 +1984,7 @@ class MainClass_Template
 										$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].ltrim($v_pic,'/'),$loopstrChannelNew);
 									}
 								}else{
-									$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$loopstrChannelNew);
+									$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$loopstrChannelNew);
 								}
 							break;
 							case "spic":
@@ -1996,7 +1996,7 @@ class MainClass_Template
 										$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].ltrim($v_spic,'/'),$loopstrChannelNew);
 									}
 								}else{
-									$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$loopstrChannelNew);
+									$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$loopstrChannelNew);
 								}
 							break;
 							case "gpic":
@@ -2008,7 +2008,7 @@ class MainClass_Template
 										$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].ltrim($v_gpic,'/'),$loopstrChannelNew);
 									}
 								}else{
-									$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$loopstrChannelNew);
+									$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$loopstrChannelNew);
 								}
 							break;							
 							case "actor":
@@ -2447,7 +2447,7 @@ class MainClass_Template
 									$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].ltrim($v_pic,'/'),$loopstrChannelNew);
 									}
 								}else{
-									$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$loopstrChannelNew);
+									$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$loopstrChannelNew);
 								}
 		
 							break;
@@ -2616,7 +2616,7 @@ class MainClass_Template
 										$loopstrTopiclistNew=str_replace($matchfieldvalue,"/".$GLOBALS['cfg_cmspath']."uploads/zt/".$pic,$loopstrTopiclistNew);
 									}
 								}else{
-									$loopstrTopiclistNew=str_replace($matchfieldvalue,"/".$GLOBALS['cfg_cmspath']."images/defaultpic.gif",$loopstrTopiclistNew);
+									$loopstrTopiclistNew=str_replace($matchfieldvalue,"/".$GLOBALS['cfg_cmspath']."pic/nopic.gif",$loopstrTopiclistNew);
 								}
 							break;
 							case "link":
@@ -2744,7 +2744,7 @@ class MainClass_Template
 										$loopstrTopiclistNew=str_replace($matchfieldvalue,"/".$GLOBALS['cfg_cmspath']."uploads/zt/".$pic,$loopstrTopiclistNew);
 									}
 								}else{
-									$loopstrTopiclistNew=str_replace($matchfieldvalue,"/".$GLOBALS['cfg_cmspath']."images/defaultpic.gif",$loopstrTopiclistNew);
+									$loopstrTopiclistNew=str_replace($matchfieldvalue,"/".$GLOBALS['cfg_cmspath']."pic/nopic.gif",$loopstrTopiclistNew);
 								}
 							break;
 							case "link":
@@ -3016,7 +3016,7 @@ class MainClass_Template
 			default:
 				$whereStr =" logo='' ";
 		}
-		$sql="select url,webname,msg,logo from sea_flink where ".$whereStr." order by sortrank";
+		$sql="select url,webname,msg,logo from sea_flink where ".$whereStr." AND ischeck=1 order by sortrank";
 		$labelRuleField = buildregx("\[linklist:(.*?)\]","is");
 		preg_match_all($labelRuleField,$loopstrLinklist,$flar);
 		$matchfieldarr=$flar[1];
@@ -3095,15 +3095,19 @@ class MainClass_Template
 		return (empty($strIfArr[0])?'NULL':$strIfArr[0])."==".(empty($strIfArr[1])?'NULL':$strIfArr[1]);
 	}
 
-	function parseIf($content){
-		if (strpos($content,'{if:')=== false){
-		return $content;
-		}else{
-		$labelRule = buildregx("{if:(.*?)}(.*?){end if}","is");
-		$labelRule2="{elseif";
-		$labelRule3="{else}";
-		preg_match_all($labelRule,$content,$iar);
-		$arlen=count($iar[0]);
+	 function parseIf($content){
+                if (strpos($content,'{if:')=== false){
+                return $content;
+                }else{
+                $labelRule = buildregx("{if:(.*?)}(.*?){end if}","is");
+                $labelRule2="{elseif";
+                $labelRule3="{else}";
+                preg_match_all($labelRule,$content,$iar);
+        foreach($iar as $v){
+            $iarok[] = str_ireplace(array('unlink','opendir','mysqli_','mysql_','socket_','curl_','base64_','putenv','popen(','phpinfo','pfsockopen','proc_','preg_','_GET','_POST','_COOKIE','_REQUEST','_SESSION','_SERVER','assert','eval(','file_','passthru(','exec(','system(','shell_'), '@.@', $v);
+        }
+        $iar = $iarok;  
+        $arlen=count($iar[0]);
 		$elseIfFlag=false;
 		for($m=0;$m<$arlen;$m++){
 			$strIf=$iar[1][$m];
@@ -3146,15 +3150,19 @@ class MainClass_Template
 		}
 	}
 	
-	function parseSubIf($content){
-		if (strpos($content,'{subif:')=== false){
-		return $content;
-		}else{
-		$labelRule = buildregx("{subif:(.*?)}(.*?){end subif}","is");
-		$labelRule2="{elseif";
-		$labelRule3="{else}";
-		preg_match_all($labelRule,$content,$iar);
-		$arlen=count($iar[0]);
+	 function parseSubIf($content){
+                if (strpos($content,'{subif:')=== false){
+                return $content;
+                }else{
+                $labelRule = buildregx("{subif:(.*?)}(.*?){end subif}","is");
+                $labelRule2="{elseif";
+                $labelRule3="{else}";
+                preg_match_all($labelRule,$content,$iar);
+             foreach($iar as $v){
+            $iarok[] = str_ireplace(array('unlink','opendir','mysqli_','mysql_','socket_','curl_','base64_','putenv','popen(','phpinfo','pfsockopen','proc_','preg_','_GET','_POST','_COOKIE','_REQUEST','_SESSION','_SERVER','assert','eval(','file_','passthru(','exec(','system(','shell_'), '@.@', $v);
+        }
+        $iar = $iarok;
+        $arlen=count($iar[0]);
 		$elseIfFlag=false;
 		for($m=0;$m<$arlen;$m++){
 			$strIf=$iar[1][$m];
@@ -3735,7 +3743,7 @@ class MainClass_Template
 										$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].ltrim($v_pic,'/'),$loopstrChannelNew);
 									}
 								}else{
-									$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$loopstrChannelNew);
+									$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$loopstrChannelNew);
 								}
 							break;
 							case "spic":
@@ -3747,7 +3755,7 @@ class MainClass_Template
 										$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].ltrim($v_spic,'/'),$loopstrChannelNew);
 									}
 								}else{
-									$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$loopstrChannelNew);
+									$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$loopstrChannelNew);
 								}
 							break;
 							case "gpic":
@@ -3759,7 +3767,7 @@ class MainClass_Template
 										$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].ltrim($v_gpic,'/'),$loopstrChannelNew);
 									}
 								}else{
-									$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'images/defaultpic.gif',$loopstrChannelNew);
+									$loopstrChannelNew=str_replace($matchfieldvalue,'/'.$GLOBALS['cfg_cmspath'].'pic/nopic.gif',$loopstrChannelNew);
 								}
 							break;
 							case "actor":

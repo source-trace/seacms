@@ -17,6 +17,7 @@ if($action=="add")
 	}
 	if(empty($templist)) $templist='channel.html';
 	if(empty($templist_1)) $templist_1='content.html';
+	if(empty($templist_2)) $templist_2='play.html';
 	if(empty($tenname)) $tenname= Pinyin(stripslashes($tname));;
 	if(empty($torder)) 
 		{
@@ -24,7 +25,7 @@ if($action=="add")
 		$torder = $trow['dd'];
 		}
 	if (!is_numeric($torder)) $torder=1;
-	$in_query = "insert into `sea_type`(upid,torder,tname,tenname,templist,templist_1,title,keyword,description,tptype) Values('$upid','$torder','$tname','$tenname','$templist','$templist_1','$title','$keyword','$description',0)";
+	$in_query = "insert into `sea_type`(upid,torder,tname,tenname,templist,templist_1,templist_2,title,keyword,description,tptype) Values('$upid','$torder','$tname','$tenname','$templist','$templist_1','$templist_2','$title','$keyword','$description',0)";
 	if(!$dsql->ExecuteNoneQuery($in_query))
 	{
 		ShowMsg("增加分类失败，请检查您的输入是否存在问题！","-1");
@@ -108,6 +109,7 @@ elseif($action=="edit")
 		$tname=$_POST["tname$id"];
 		$templist=$_POST["templist$id"];
 		$templist_1=$_POST["templist_1$id"];
+		$templist_2=$_POST["templist_2$id"];
 		$title=$_POST["title$id"];
 		$keyword=$_POST["keyword$id"];
 		$description=$_POST["description$id"];
@@ -120,6 +122,7 @@ elseif($action=="edit")
 	}
 	if(empty($templist)) $templist='channel.html';
 	if(empty($templist_1)) $templist_1='content.html';
+	if(empty($templist_2)) $templist_2='play.html';
 	if(empty($tenname)) $tenname=Pinyin(stripslashes($tname));;
 	if(empty($torder)) 
 		{
@@ -127,7 +130,7 @@ elseif($action=="edit")
 		$torder = $trow['dd'];
 		}
 	if (!is_numeric($torder)) $torder=1;
-	$dsql->ExecuteNoneQuery("update sea_type set tname='$tname',tenname='$tenname',templist='$templist',templist_1='$templist_1',keyword='$keyword',title='$title',description='$description',torder='$torder' where tid=".$id);
+	$dsql->ExecuteNoneQuery("update sea_type set tname='$tname',tenname='$tenname',templist='$templist',templist_1='$templist_1',templist_2='$templist_2',keyword='$keyword',title='$title',description='$description',torder='$torder' where tid=".$id);
 	clearTypeCache();
 	}
 	header("Location:admin_type.php");
@@ -241,6 +244,7 @@ function typeList($topId,$separateStr,$span="")
             <td height="30" align="center" bgcolor="#FFFFFF" class="td_border"><input type="text" name="tenname<?php echo $row->tid;?>" value="<?php echo $row->tenname;?>"  size="12" /></td>
             <td height="30" align="center" bgcolor="#FFFFFF" class="td_border"><input type="text" name="templist<?php echo $row->tid;?>" value="<?php echo $row->templist;?>"  size="15" /></td>
             <td height="30" align="center" bgcolor="#FFFFFF" class="td_border"><input type="text" name="templist_1<?php echo $row->tid;?>" value="<?php echo $row->templist_1;?>"  size="15" /></td>
+			<td height="30" align="center" bgcolor="#FFFFFF" class="td_border"><input type="text" name="templist_2<?php echo $row->tid;?>" value="<?php echo $row->templist_2;?>"  size="15" /></td>
             <td height="30" align="center" bgcolor="#FFFFFF" class="td_border"><input type="text" name="title<?php echo $row->tid;?>" value="<?php echo $row->title;?>"  size="20" /></td>
             <td height="30" align="center" bgcolor="#FFFFFF" class="td_border"><input type="text" name="keyword<?php echo $row->tid;?>" value="<?php echo $row->keyword;?>"  size="20" /></td>
             <td height="30" align="center" bgcolor="#FFFFFF" class="td_border"><input type="text" name="description<?php echo $row->tid;?>" value="<?php echo $row->description;?>"  size="20" /></td>

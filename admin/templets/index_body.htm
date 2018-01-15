@@ -60,7 +60,7 @@ body {
 	   <div class="S_list">&nbsp;&nbsp;域名：<?php echo  @GetHostByName($_SERVER['SERVER_NAME']);echo " - "; echo $_SERVER['SERVER_PORT'] ?></div>
 	   <div class="S_list">引擎：<?php echo  @$_SERVER['SERVER_SOFTWARE']; ?></div>
 	   <div class="S_list">&nbsp;&nbsp;MySql版本：<?php echo @mysql_get_server_info(); ?> </div>
-	   <div class="S_list">系统：<?php echo @php_uname('s'); echo " - ";echo @php_uname('v'); ?></div>
+	   <div class="S_list">系统：<?php echo PHP_OS; ?></div>
 
                      
         

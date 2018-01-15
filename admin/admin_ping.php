@@ -18,21 +18,20 @@ if($action=="set")
 	fwrite($open,$str);
 	fclose($open);
 }
-$weburl = 't.seacms.net';
-$token='kvs09mzW6lzfhH43';
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>管理登陆验证码</title>
+<title>百度主动推送设置</title>
 <link  href="img/admin.css" rel="stylesheet" type="text/css" />
 <link  href="img/style.css" rel="stylesheet" type="text/css" />
 <script src="js/common.js" type="text/javascript"></script>
 <script src="js/main.js" type="text/javascript"></script>
 </head>
 <body>
-<script type="text/JavaScript">if(parent.$('admincpnav')) parent.$('admincpnav').innerHTML='后台首页&nbsp;&raquo;&nbsp;管理员&nbsp;&raquo;&nbsp;管理登陆验证码 ';</script>
+<script type="text/JavaScript">if(parent.$('admincpnav')) parent.$('admincpnav').innerHTML='后台首页&nbsp;&raquo;&nbsp;管理员&nbsp;&raquo;&nbsp;百度主动推送设置 ';</script>
 <div class="r_main">
   <div class="r_content">
     <div class="r_content_1">

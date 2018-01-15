@@ -30,7 +30,7 @@ if($action=='edit')
       <td colspan="2" class="td_border"><textarea  name="content" style="width:99%;font-family: Arial, Helvetica, sans-serif;font-size: 14px;" rows="25" dataType="Require" msg="请填写模版内容"><?php echo $content;?></textarea></td>
     </tr>
     <tr>
-      <td class="td_border"></td><td class="td_border"><input name="filedir" type="hidden" value="<?php echo $filedir;?>"><input type="submit" name="Submit" value="修改模板" class="btn" /> <input type="button" name="back" value="返  回"  class="btn" onClick="javascript:history.go(-1);" /></td>
+      <td class="td_border"></td><td class="td_border"><input name="filedir" type="hidden" value="<?php echo $filedir;?>"><input type="submit" name="Submit" value="修改模板" class="btn" /> <input type="button" name="back" value="返  回"  class="btn" onClick="javascript:history.go(-1);" /> <font color="red">*除非必要，严禁在后台在线修改编辑模板，以免因浏览器差异造成无法弥补的错误损失！</fomt></td>
     </tr>
   </form>
 <?php

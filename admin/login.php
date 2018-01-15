@@ -21,15 +21,39 @@ if( is_dir(dirname(__FILE__).'/../install') )
 	}
 }
 //检测后台目录是否更名
-$cururl = GetCurUrl();
-if(m_eregi('/admin/login',$cururl))
+$cdir = dirname(__FILE__); 
+if(strstr($cdir,'admin'))
 {
-	$redmsg = '<br />&nbsp;&nbsp;&nbsp;&nbsp;<font color=\'red\'><b>您的管理目录使用默认名称admin，建议在FTP里把它修改为其它名称，那样会更安全！</b></font>';
+	echo "<script>alert('您的管理目录包含默认字符admin，为了系统安全，强烈建议您修改为其它更复杂的名称并且不要出现admin字符！')</script>";
 }
-else
+
+//ip检测
+function GetUIP()
 {
-	$redmsg = '';
+	if(!empty($_SERVER["HTTP_CLIENT_IP"]))
+	{
+		$cip = $_SERVER["HTTP_CLIENT_IP"];
+	}
+	else if(!empty($_SERVER["HTTP_X_FORWARDED_FOR"]))
+	{
+		$cip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+	}
+	else if(!empty($_SERVER["REMOTE_ADDR"]))
+	{
+		$cip = $_SERVER["REMOTE_ADDR"];
+	}
+	else
+	{
+		$cip = '';
+	}
+	preg_match("/[\d\.]{7,15}/", $cip, $cips);
+	$cip = isset($cips[0]) ? $cips[0] : 'unknown';
+	unset($cips);
+	return $cip;
 }
+$uip = GetUIP();
+require_once("../data/admin/ip.php");
+if($v=="1" AND !strstr($ip,$uip)){die('IP address is forbidden access');}
 
 //登录检测
 $admindirs = explode('/',str_replace("\\",'/',dirname(__FILE__)));

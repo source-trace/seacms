@@ -1,4 +1,34 @@
 <?php
+//ip检测
+function GetUIP()
+{
+	if(!empty($_SERVER["HTTP_CLIENT_IP"]))
+	{
+		$cip = $_SERVER["HTTP_CLIENT_IP"];
+	}
+	else if(!empty($_SERVER["HTTP_X_FORWARDED_FOR"]))
+	{
+		$cip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+	}
+	else if(!empty($_SERVER["REMOTE_ADDR"]))
+	{
+		$cip = $_SERVER["REMOTE_ADDR"];
+	}
+	else
+	{
+		$cip = '';
+	}
+	preg_match("/[\d\.]{7,15}/", $cip, $cips);
+	$cip = isset($cips[0]) ? $cips[0] : 'unknown';
+	unset($cips);
+	return $cip;
+}
+$uip = GetUIP();
+require_once("../data/admin/ip.php");
+if($v=="1" AND !strstr($ip,$uip)){die('IP address is forbidden access');}
+
+
+
 define('sea_ADMIN', preg_replace("|[/\\\]{1,}|",'/',dirname(__FILE__) ) );
 require_once(sea_ADMIN."/../include/common.php");
 require_once(sea_INC."/check.admin.php");

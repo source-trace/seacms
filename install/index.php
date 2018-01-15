@@ -54,7 +54,7 @@ if($step==1)
 else if($step==2)
 {
 	 $phpv = phpversion();
-	 $sp_os = @getenv('OS');
+	 $sp_os = PHP_OS;
 	 $sp_gd = gdversion();
 	 $sp_server = $_SERVER['SERVER_SOFTWARE'];
 	 $sp_host = (empty($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_HOST'] : $_SERVER['REMOTE_ADDR']);
@@ -83,13 +83,14 @@ else if($step==2)
         '/',
         '/data',
         '/data/admin',
-        '/data/backupdata',
         '/data/cache',
         '/data/mark',
 		'/install',
         '/uploads/allimg',
         '/uploads/editor',
         '/uploads/litimg',
+		'/admin/ebak/bdata',
+		'/admin/ebak/zip',
 		'/js',
 		'/js/ads'
         
